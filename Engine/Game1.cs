@@ -68,7 +68,6 @@ public class Game1 : Game
 
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         _player.Update(deltaTime);
-        _player.CheckBlockers(_platforms);
 
         _portal.CheckCollision(_player);
 

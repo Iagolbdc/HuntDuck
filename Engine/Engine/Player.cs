@@ -7,13 +7,10 @@ using Microsoft.Xna.Framework.Input;
 
 public class Player : GameObject{
     private const float SPEED_X = 200;
-    private const float JUMP_VELOCITY = -5;
-    private Rectangle _previousBounds;
     public float directionX = -1;
     public float directionY = 0;
     public bool animationDirection = true;
     public bool dead = true;
-
     private Dictionary<string, Texture2D[]> _animations;
     private Texture2D[] _currentAnimation;
     private string _currentAnimationKey;
@@ -24,7 +21,7 @@ public class Player : GameObject{
 
     public Player(Dictionary<string, Texture2D[]> animations) : base(animations.Values.First()[0]){
         _animations = animations;
-        _currentAnimationKey = "idle"; // Defina a animação padrão
+        _currentAnimationKey = "move_left"; // Defina a animação padrão
         _currentAnimation = _animations[_currentAnimationKey];
     }
 
@@ -33,20 +30,18 @@ public class Player : GameObject{
     }
 
     public override void Initialize(){
-        _bounds.X = 150;
-        _bounds.Y = 347;
+        _bounds.X = 100;
+        _bounds.Y = 100;
     }
 
     public override void Update(float deltaTime)
     {
 
-        Console.WriteLine(directionY);
+        Console.WriteLine(_bounds.Y);
 
         UpdateAnimation(deltaTime);
 
         directionY = 0;
-
-        _previousBounds = _bounds;
 
         //Console.WriteLine($"{_bounds.Y + _image.Height} || {Globals.SCREEN_HEIGHT}");
 
@@ -61,10 +56,10 @@ public class Player : GameObject{
         }else if(animationDirection){
             _currentAnimationKey = "move_left";
         }else{
-             _currentAnimationKey = "move_right";
+            _currentAnimationKey = "move_right";
         }
 
-        if(Input.GetKey(Keys.S) && _bounds.Y < Globals.SCREEN_HEIGHT - _image.Height){
+        if(Input.GetKey(Keys.S) && _bounds.Y < 330){
             directionY = 1.0f;
         }
 
@@ -72,7 +67,7 @@ public class Player : GameObject{
             _bounds.Y = _bounds.Y + (int)(directionY * SPEED_X * deltaTime);
         }
 
-        if(_bounds.X + _image.Width > Globals.SCREEN_WIDTH ){
+        if(_bounds.X + _image.Width > 800){
             directionX = -1.0f;
             animationDirection = true;
         }
@@ -92,8 +87,6 @@ public class Player : GameObject{
             _currentFrame = 0;
         }
 
-        // _speedY = _speedY + (GRAVITY * deltaTime);
-        // _bounds.Y = _bounds.Y + (int)_speedY;
     }
 
     private void UpdateAnimation(float deltaTime)

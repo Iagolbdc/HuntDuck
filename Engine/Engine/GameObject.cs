@@ -26,15 +26,15 @@ public class GameObject{
 
     public GameObject(Texture2D image){
         _image = image;
-        _bounds = new Rectangle(0,0,_image.Width, _image.Height);
+            _bounds = new Rectangle(0,0,_image.Width, _image.Height);
     }
 
     public virtual void Initialize(){
-
+                
     }
 
     public virtual void Update(float deltaTime){
-        
+            
     }
 
     public virtual void Draw(SpriteBatch spriteBatch){

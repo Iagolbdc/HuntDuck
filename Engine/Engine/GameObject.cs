@@ -26,8 +26,14 @@ public class GameObject{
 
     public GameObject(Texture2D image){
         _image = image;
-            _bounds = new Rectangle(0,0,_image.Width, _image.Height);
+        _bounds = new Rectangle(0,0,_image.Width, _image.Height);
     }
+
+    public GameObject(Texture2D image, Rectangle rectangle){
+        _image = image;
+        _bounds = rectangle;
+    }
+    
 
     public virtual void Initialize(){
                 

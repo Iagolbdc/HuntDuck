@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace HuntDuck;
 
@@ -13,15 +10,18 @@ public class Game1 : Game
     private IScreen _menuScreen;
     private IScreen _gameScreen;
     private IScreen _currentScreen; 
+    private Color _backgroundColor;
 
     public void ChangeScreen(EScreen screenType){
         switch (screenType)
         {
             case EScreen.Menu:
                 _currentScreen = _menuScreen;
+                _backgroundColor = Color.Black;
                 break;
             case EScreen.Game:
                 _currentScreen = _gameScreen;
+                _backgroundColor = Color.SkyBlue;
                 break;
         }
         _currentScreen.Initialize();
@@ -75,7 +75,7 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.SkyBlue);
+        GraphicsDevice.Clear(_backgroundColor);
 
         _spriteBatch.Begin();
 

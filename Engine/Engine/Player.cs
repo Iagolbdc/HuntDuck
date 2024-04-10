@@ -45,7 +45,7 @@ public class Player : GameObject{
 
         //Console.WriteLine($"{_bounds.Y + _image.Height} || {Globals.SCREEN_HEIGHT}");
 
-        if(Input.GetKey(Keys.W) && _bounds.Y > 0.0f ){
+        if((Input.GetKey(Keys.W) || Input.GetKey(Keys.Up)) && _bounds.Y > 0.0f ){
             directionY = -1.0f; 
         }
 
@@ -59,7 +59,7 @@ public class Player : GameObject{
             _currentAnimationKey = "move_right";
         }
 
-        if(Input.GetKey(Keys.S) && _bounds.Y < 330){
+        if((Input.GetKey(Keys.S) || Input.GetKey(Keys.Down)) && _bounds.Y < 330){
             directionY = 1.0f;
         }
 
